@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import Header from './header';
 
 export default class App extends Component {
   render() {
+    const { children } = this.props;
     return (
-      <div>React simple starter</div>
+      <div>
+        <Header />
+        {children}
+      </div>
     );
   }
 }
