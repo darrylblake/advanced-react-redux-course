@@ -29,3 +29,15 @@ export const signoutUser = () => {
   localStorage.removeItem('token');
   return { type: UNAUTH_USER };
 }
+
+export const signupUser = ({ email, password }) => (dispatch) => {
+  axios.post(`${ROOT_URL}/signup`, { email, password })
+    .then(response => {
+      dispatch({ type: AUTH_USER })
+      localStorage.setItem('token', response.data.token);
+      browserHistory.push('/feature');
+    })
+    .catch((err) => {
+      dispatch(authError(err.response.data.error));
+    });
+};
