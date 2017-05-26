@@ -41,3 +41,12 @@ export const signupUser = ({ email, password }) => (dispatch) => {
       dispatch(authError(err.response.data.error));
     });
 };
+
+export const fetchMessage = () => (dispatch) => {
+  axios.get(ROOT_URL, {
+    headers: { authorization: localStorage.getItem('token') }
+  })
+    .then(response => {
+      console.log(response)
+    });
+}
